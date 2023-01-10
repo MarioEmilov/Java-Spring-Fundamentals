@@ -1,8 +1,0 @@
-package _25_Polymorphism.Polymorphism;
-
-public class Bicycle extends Vehicle {
-    @Override
-    public void go() {
-        System.out.println("*The bicycle begins moving*");
-    }
-}
