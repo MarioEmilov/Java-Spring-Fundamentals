@@ -2,7 +2,7 @@ package shoplist.shoppinglist.service.impl;
 
 import org.springframework.stereotype.Service;
 import shoplist.shoppinglist.model.entity.Category;
-import shoplist.shoppinglist.model.enums.CategotyName;
+import shoplist.shoppinglist.model.enums.CategoryName;
 import shoplist.shoppinglist.repository.CategoryRepository;
 import shoplist.shoppinglist.service.CategoryService;
 
@@ -20,12 +20,19 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public void initCategories() {
         if (categoryRepository.count() == 0) {
-            Arrays.stream(CategotyName.values())
-                    .forEach(categotyName -> {
-                        Category category = new Category(categotyName,
-                                "Description for " + categotyName.name());
+            Arrays.stream(CategoryName.values())
+                    .forEach(categoryName -> {
+                        Category category = new Category(categoryName,
+                                "Description for " + categoryName.name());
                         categoryRepository.save(category);
                     });
         }
+    }
+
+    @Override
+    public Category findByName(CategoryName categoryName) {
+        return categoryRepository
+                .findByName(categoryName)
+                .orElse(null);
     }
 }

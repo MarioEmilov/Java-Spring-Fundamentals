@@ -1,5 +1,5 @@
 package shoplist.shoppinglist.model.enums;
 
-public enum CategotyName {
+public enum CategoryName {
     FOOD, DRINK, HOUSEHOLD, OTHER
 }

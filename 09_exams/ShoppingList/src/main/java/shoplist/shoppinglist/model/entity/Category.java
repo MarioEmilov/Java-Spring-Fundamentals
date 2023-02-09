@@ -1,14 +1,14 @@
 package shoplist.shoppinglist.model.entity;
 
 import jakarta.persistence.*;
-import shoplist.shoppinglist.model.enums.CategotyName;
+import shoplist.shoppinglist.model.enums.CategoryName;
 
 @Entity
 @Table(name = "categories")
 public class Category extends BaseEntity{
 
     @Enumerated(EnumType.STRING)
-    private CategotyName name;
+    private CategoryName name;
 
     @Column(name = "description", columnDefinition = "TEXT")
     private String description;
@@ -16,16 +16,16 @@ public class Category extends BaseEntity{
     public Category() {
     }
 
-    public Category(CategotyName name, String description) {
+    public Category(CategoryName name, String description) {
         this.name = name;
         this.description = description;
     }
 
-    public CategotyName getName() {
+    public CategoryName getName() {
         return name;
     }
 
-    public void setName(CategotyName name) {
+    public void setName(CategoryName name) {
         this.name = name;
     }
 

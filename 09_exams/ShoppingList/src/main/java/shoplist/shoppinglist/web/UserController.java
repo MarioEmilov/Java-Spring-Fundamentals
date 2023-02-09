@@ -35,6 +35,7 @@ public class UserController {
          */
         if (!model.containsAttribute("userRegisterBindingModel")) {
             model.addAttribute("userRegisterBindingModel", new UserRegisterBindingModel());
+            model.addAttribute("isExists", false);
         }
         return "register";
     }
@@ -58,9 +59,15 @@ public class UserController {
         }
 
         //To save in DB we need ModelMapper to transfer the data,
-        // and we create a service -> UserServiceModel
-        userService.register(modelMapper
+        // and we create a service -> UserServiceModel and check if we have user with same fields
+        boolean isSaved = userService.register(modelMapper
                 .map(userRegisterBindingModel, UserServiceModel.class));
+
+        if (!isSaved) {
+            redirectAttributes.addFlashAttribute("userRegisterBindingModel", userRegisterBindingModel);
+            redirectAttributes.addFlashAttribute("isExists", true);
+            return "redirect:register";
+        }
         return "redirect:login";
     }
 
@@ -105,6 +112,12 @@ public class UserController {
 
         //We are Login user
         httpSession.setAttribute("user", userServiceModel);
+        return "redirect:/";
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession httpSession) {
+        httpSession.invalidate();
         return "redirect:/";
     }
 }

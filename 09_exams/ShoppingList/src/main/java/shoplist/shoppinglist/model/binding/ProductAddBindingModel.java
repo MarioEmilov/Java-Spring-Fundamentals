@@ -2,7 +2,7 @@ package shoplist.shoppinglist.model.binding;
 
 import jakarta.validation.constraints.*;
 import org.springframework.format.annotation.DateTimeFormat;
-import shoplist.shoppinglist.model.enums.CategotyName;
+import shoplist.shoppinglist.model.enums.CategoryName;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -25,7 +25,7 @@ public class ProductAddBindingModel {
     private BigDecimal price;
 
     @NotNull(message = "You must select category")
-    private CategotyName categoty;
+    private CategoryName category;
 
     public ProductAddBindingModel() {
     }
@@ -62,11 +62,11 @@ public class ProductAddBindingModel {
         this.price = price;
     }
 
-    public CategotyName getCategoty() {
-        return categoty;
+    public CategoryName getCategory() {
+        return category;
     }
 
-    public void setCategoty(CategotyName categoty) {
-        this.categoty = categoty;
+    public void setCategory(CategoryName category) {
+        this.category = category;
     }
 }
